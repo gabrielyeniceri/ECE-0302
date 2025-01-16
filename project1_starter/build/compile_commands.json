@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-bitarray.dir\\test_bitarray.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project1_starter\\test_bitarray.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/test_bitarray.cpp",
+  "output": "CMakeFiles/test-bitarray.dir/test_bitarray.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-bitarray.dir\\bitarray.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project1_starter\\bitarray.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/bitarray.cpp",
+  "output": "CMakeFiles/test-bitarray.dir/bitarray.cpp.obj"
+}
+]
