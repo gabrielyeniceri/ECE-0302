@@ -58,7 +58,7 @@ TEST_CASE("Bitarray: Test set method", "[bitarray]")
 
     std::string s1("00010");
     BitArray b1(5);
-    b1.set(3);
+    b1.set(3);  
     REQUIRE(b1.size() == 5);
     REQUIRE(b1.good());
     REQUIRE(b1.asString().compare(s1) == 0);
