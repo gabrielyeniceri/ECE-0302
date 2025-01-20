@@ -89,3 +89,63 @@ TEST_CASE("Bitarray: Test many given methods combined", "[bitarray]")
             ));
     }
 }
+
+TEST_CASE("Bitarray: Test reset method", "[bitarray]")
+{
+    BitArray b("11111111");
+    b.reset(2);
+    b.reset(5);
+    REQUIRE(b.asString() == "11011011");
+}
+
+TEST_CASE("Bitarray: Test toggle method", "[bitarray]")
+{
+    BitArray b("10101010");
+    b.toggle(0);
+    b.toggle(1);
+    REQUIRE(b.asString() == "01101010");
+    b.toggle(1);
+    REQUIRE(b.asString() == "11101010");
+}
+
+TEST_CASE("Bitarray: Test test method", "[bitarray]")
+{
+    BitArray b("10000001");
+    REQUIRE(b.test(0) == true);
+    REQUIRE(b.test(7) == true);
+    REQUIRE(b.test(1) == false);
+}
+
+TEST_CASE("Bitarray: Test invalid index operations", "[bitarray]")
+{
+    BitArray b(8);
+    b.set(10); 
+    REQUIRE_FALSE(b.good());
+
+    BitArray b2(8);
+    b2.reset(-1);
+    REQUIRE_FALSE(b2.good());
+
+    BitArray b3(8);
+    b3.toggle(100);
+    REQUIRE_FALSE(b3.good());
+}
+
+TEST_CASE("Bitarray: Test dynamic size handling", "[bitarray]")
+{
+    BitArray b(128);
+    REQUIRE(b.size() == 128);
+    REQUIRE(b.good());
+
+    b.set(127);
+    REQUIRE(b.test(127) == true);
+
+    b.reset(127);
+    REQUIRE(b.test(127) == false);
+}
+
+TEST_CASE("Bitarray: Test empty construction and invalid state", "[bitarray]")
+{
+    BitArray b(0);
+    REQUIRE_FALSE(b.good());
+}

@@ -19,22 +19,25 @@ public:
   BitArray(const BitArray &) = delete;
   BitArray &operator=(const BitArray &) = delete;
 
-  intmax_t size() const;
+  intmax_t size() const override;
 
-  bool good() const;
+  bool good() const override;
 
-  void set(intmax_t index);
+  void set(intmax_t index) override;
 
-  void reset(intmax_t index);
+  void reset(intmax_t index) override;
 
-  void toggle(intmax_t index);
+  void toggle(intmax_t index) override;
 
-  bool test(intmax_t index);
+  bool test(intmax_t index) override;
 
-  std::string asString() const;
+  std::string asString() const override;
 
 private:
-  // TODO
+  intmax_t bit_size;
+  uint8_t *bits;
+  bool is_valid;
+  void invalidate();
 };
 
 #endif

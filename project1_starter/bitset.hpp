@@ -8,25 +8,24 @@ class Bitset
 public:
   virtual ~Bitset() {}; // virtual destructor, no need to comment
 
-  // TODO COMMENT
+//returns the size of the bitset
   virtual intmax_t size() const = 0;
 
-  // TODO COMMENT
+//true if bitset is valid if not then false
   virtual bool good() const = 0;
 
-  // TODO COMMENT
+//set bit at specified index to one
   virtual void set(intmax_t index) = 0;
 
-  // TODO COMMENT
+//resets the bit at specified index to zero
   virtual void reset(intmax_t index) = 0;
 
-  // TODO COMMENT
+ //toggles the bit at specified index
   virtual void toggle(intmax_t index) = 0;
-
-  // TODO COMMENT
+  //true if bit is set otherwise false
   virtual bool test(intmax_t index) = 0;
 
-  // TODO COMMENT
+ //this returns the bitset in a string of 0 and 1s
   virtual std::string asString() const = 0;
 };
 
