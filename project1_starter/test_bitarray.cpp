@@ -98,16 +98,6 @@ TEST_CASE("Bitarray: Test reset method", "[bitarray]")
     REQUIRE(b.asString() == "11011011");
 }
 
-TEST_CASE("Bitarray: Test toggle method", "[bitarray]")
-{
-    BitArray b("10101010");
-    b.toggle(0);
-    b.toggle(1);
-    REQUIRE(b.asString() == "01101010");
-    b.toggle(1);
-    REQUIRE(b.asString() == "11101010");
-}
-
 TEST_CASE("Bitarray: Test test method", "[bitarray]")
 {
     BitArray b("10000001");
@@ -144,8 +134,34 @@ TEST_CASE("Bitarray: Test dynamic size handling", "[bitarray]")
     REQUIRE(b.test(127) == false);
 }
 
+TEST_CASE("Toggle2","[bitarray]"){
+    BitArray c(8);
+    c.toggle(0);
+    REQUIRE(c.asString() == "10000000");
+
+}
+
 TEST_CASE("Bitarray: Test empty construction and invalid state", "[bitarray]")
 {
     BitArray b(0);
     REQUIRE_FALSE(b.good());
+}
+
+
+TEST_CASE("count ones", "[bitarray]") {
+    BitArray b(8);
+    REQUIRE(b.countOnes() == 0);
+
+    b.set(0); // 10000000
+    b.set(2); // 10100000
+    b.set(4); // 10101000
+    b.set(6); // 10101010
+    REQUIRE(b.countOnes() == 4);
+    for (int i = 0; i < b.size(); ++i) {
+        b.toggle(i);
+    }
+    REQUIRE(b.countOnes() == 4); // 4 flipped
+    b.toggle(100); //invalid out of range
+    REQUIRE(b.good() == false);
+    REQUIRE(b.countOnes() == 0); 
 }

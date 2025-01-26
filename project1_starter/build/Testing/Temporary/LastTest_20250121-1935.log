@@ -1,0 +1,21 @@
+Start testing: Jan 21 15:38 Eastern Standard Time
+----------------------------------------------------------
+1/1 Testing: test-bitarray
+1/1 Test: test-bitarray
+Command: "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/build/test-bitarray.exe"
+Directory: C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project1_starter/build
+"test-bitarray" start time: Jan 21 15:38 Eastern Standard Time
+Output:
+----------------------------------------------------------
+===============================================================================
+All tests passed (4124 assertions in 12 test cases)
+
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"test-bitarray" end time: Jan 21 15:38 Eastern Standard Time
+"test-bitarray" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jan 21 15:38 Eastern Standard Time

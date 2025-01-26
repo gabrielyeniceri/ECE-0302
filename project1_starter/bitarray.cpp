@@ -2,7 +2,6 @@
 #include <cstring>
 #include <stdexcept>
 
-//initializes a bitArray of size 8 with all bits set to 0
 BitArray::BitArray() : bit_size(8), is_valid(true) {
     bits = new uint8_t[(bit_size + 7) / 8]();
 }
@@ -36,10 +35,12 @@ BitArray::BitArray(const std::string &value) : bit_size(value.size()), is_valid(
     }
 }
 
+
 //frees memory
 BitArray::~BitArray() {
     delete[] bits;
 }
+
 
 //returns the size
 intmax_t BitArray::size() const {
@@ -98,8 +99,21 @@ std::string BitArray::asString() const {
     return result;
 }
 
-
 //marks bitarray invalid
 void BitArray::invalidate() {
     is_valid = false;
+}
+
+int BitArray::countOnes() const {
+    if (!is_valid) {
+        return 0; //invalid returns 0
+    }
+
+    int count = 0;
+    for (intmax_t i = 0; i < bit_size; ++i) {
+        if (const_cast<BitArray*>(this)->test(i)) {
+            ++count;
+        }
+    }
+    return count;
 }

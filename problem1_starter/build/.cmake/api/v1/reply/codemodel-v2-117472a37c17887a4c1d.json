@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "bags",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "starter_download::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-starter_download-Debug-7429d5c81c5c8db837cc.json",
+					"name" : "starter_download",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "submission::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-submission-Debug-dce43e44afacd8948f15.json",
+					"name" : "submission",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-dynamic-bag::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-dynamic-bag-Debug-c3a4d2b93bef883b1184.json",
+					"name" : "test-dynamic-bag",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-limited-size-bag::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-limited-size-bag-Debug-85acb3038347aa8de26e.json",
+					"name" : "test-limited-size-bag",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem1_starter/build",
+		"source" : "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem1_starter"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

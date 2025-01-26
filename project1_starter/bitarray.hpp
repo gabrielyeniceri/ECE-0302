@@ -32,7 +32,7 @@ public:
   bool test(intmax_t index) override;
 
   std::string asString() const override;
-
+   int countOnes() const;
 private:
   intmax_t bit_size;
   uint8_t *bits;

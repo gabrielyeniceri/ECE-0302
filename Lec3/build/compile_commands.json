@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec3/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test_bag.dir\\test_bag.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\Lec3\\test_bag.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec3/test_bag.cpp",
+  "output": "CMakeFiles/test_bag.dir/test_bag.cpp.obj"
+}
+]

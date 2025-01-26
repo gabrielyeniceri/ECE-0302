@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\test-limited-size-bag.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\test-limited-size-bag.dir/objects.a @CMakeFiles\test-limited-size-bag.dir\objects1.rsp
+C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\test-limited-size-bag.dir/objects.a -Wl,--no-whole-archive -o test-limited-size-bag.exe -Wl,--out-implib,libtest-limited-size-bag.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\test-limited-size-bag.dir\linkLibs.rsp
