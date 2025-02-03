@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "cstddef": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "string": "cpp"
     }
 }
