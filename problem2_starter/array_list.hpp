@@ -1,7 +1,8 @@
 #ifndef ARRAY_LIST_HPP
-#define ARRAY_LIST_HPP
-
+#define ARRAY_LIST_HPP 
 #include "abstract_list.hpp"
+#include <cstddef>
+#include <utility>
 
 template <typename T>
 class ArrayList : public AbstractList<T>
@@ -44,7 +45,8 @@ public:
   void setEntry(std::size_t position, const T &newValue);
 
 private:
-  // TODO
+  T* m_items;
+  std::size_t m_length;
 };
 
 #include "array_list.tpp"

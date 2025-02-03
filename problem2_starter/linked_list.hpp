@@ -1,8 +1,9 @@
 #ifndef _LINKED_LIST_HPP_
 #define _LINKED_LIST_HPP_
-
 #include "abstract_list.hpp"
 #include "Node.hpp"
+#include <cstddef>
+#include <utility> 
 
 template <typename T>
 class LinkedList : public AbstractList<T>
@@ -44,7 +45,8 @@ public:
   void setEntry(std::size_t position, const T &newValue);
 
 private:
-  // TODO
+  Node<T>* head;
+  std::size_t m_length;
 };
 
 #include "linked_list.tpp"
