@@ -50,9 +50,9 @@ private:
   T *items;
   std::size_t size;
   std::size_t capacity;
-  void resize(std::size_t new_capacity);
+  static const std::size_t initialCapacity = 10;
 };
 
 #include "dynamic_bag.tpp"
-
+  
 #endif

@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\test-array-list.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\test-array-list.dir/objects.a @CMakeFiles\test-array-list.dir\objects1.rsp
+C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\test-array-list.dir/objects.a -Wl,--no-whole-archive -o test-array-list.exe -Wl,--out-implib,libtest-array-list.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\test-array-list.dir\linkLibs.rsp

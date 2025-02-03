@@ -1,87 +1,97 @@
 #include "dynamic_bag.hpp"
+#include <algorithm>
+#include <stdexcept>
+template <typename T>
+DynamicBag<T>::DynamicBag() : items(new T[initialCapacity]), size(0), capacity(initialCapacity) {}
 
 template <typename T>
-DynamicBag<T>::DynamicBag()
-{
-  // TODO
-}
-
-template <typename T>
-DynamicBag<T>::DynamicBag(const DynamicBag<T> &x)
-{
-  // TODO
+DynamicBag<T>::DynamicBag(const DynamicBag<T>& x) : items(new T[x.capacity]), size(x.size), capacity(x.capacity) {
+    std::copy(x.items, x.items + x.size, items);
 }
 
 template <typename T>
 DynamicBag<T>::~DynamicBag()
 {
-  // TODO
+   delete[] items;
 }
 
 template <typename T>
 DynamicBag<T> &DynamicBag<T>::operator=(DynamicBag<T> x)
 {
-  // TODO, use copy swap idiom
+     swap(x);
   return *this;
 }
 
 template <typename T>
 void DynamicBag<T>::swap(DynamicBag<T> &x)
 {
-  // TODO
+    std::swap(items, x.items);
+    std::swap(size, x.size);
+    std::swap(capacity, x.capacity);
 }
 
 template <typename T>
 bool DynamicBag<T>::add(const T &item)
 {
-  // TODO
-  return false;
+ if (size == capacity) {
+        capacity *= 2;
+        T* newItems = new T[capacity];
+        std::copy(items, items + size, newItems);
+        delete[] items;
+        items = newItems;
+    }
+    items[size++] = item;
+    return true;
 }
 
 template <typename T>
 bool DynamicBag<T>::remove(const T &item)
 {
-  // TODO
-  return false;
+ for (std::size_t i = 0; i < size; ++i) {
+        if (items[i] == item) {
+            items[i] = items[--size];
+            return true;
+        }
+    }
+    return false;
 }
 
 template <typename T>
 bool DynamicBag<T>::isEmpty() const
 {
-  // TODO
-  return false;
+  return size == 0;
 }
 
 template <typename T>
 std::size_t DynamicBag<T>::getCurrentSize() const
 {
-  // TODO
-  return 0;
+ return size;
 }
 
 template <typename T>
 bool DynamicBag<T>::contains(const T &item) const
 {
-  // TODO
-  return false;
+    return std::find(items, items + size, item) != items + size;
 }
 
 template <typename T>
 void DynamicBag<T>::clear()
 {
-  // TODO
+    size = 0;
 }
 
 template <typename T>
 std::size_t DynamicBag<T>::getFrequencyOf(const T &item) const
 {
-  // TODO
-  return 0;
+return std::count(items, items + size, item);
 };
 
 template <typename T>
 bool DynamicBag<T>::operator==(const AbstractBag<T> &other) const
 {
-  // TODO
-  return false;
+    if (size != other.getCurrentSize()) return false;
+    for (std::size_t i = 0; i < size; ++i) {
+        if (getFrequencyOf(items[i]) != other.getFrequencyOf(items[i])) return false;
+    }
+    return true;
 }

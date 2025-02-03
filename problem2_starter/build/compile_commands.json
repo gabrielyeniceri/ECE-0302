@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem2_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-array-list.dir\\test_array_list.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\problem2_starter\\test_array_list.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem2_starter/test_array_list.cpp",
+  "output": "CMakeFiles/test-array-list.dir/test_array_list.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem2_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-linked-list.dir\\test_linked_list.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\problem2_starter\\test_linked_list.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem2_starter/test_linked_list.cpp",
+  "output": "CMakeFiles/test-linked-list.dir/test_linked_list.cpp.obj"
+}
+]
