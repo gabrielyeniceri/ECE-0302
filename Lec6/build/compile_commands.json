@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\evaluate_prefix.dir\\test_prefix.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\Lec6\\test_prefix.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/test_prefix.cpp",
+  "output": "CMakeFiles/evaluate_prefix.dir/test_prefix.cpp.obj"
+}
+]

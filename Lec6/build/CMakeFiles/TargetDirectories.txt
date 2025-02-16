@@ -1,0 +1,5 @@
+C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build/CMakeFiles/evaluate_prefix.dir
+C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build/CMakeFiles/direct_download.dir
+C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build/CMakeFiles/test.dir
+C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build/CMakeFiles/edit_cache.dir
+C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec6/build/CMakeFiles/rebuild_cache.dir

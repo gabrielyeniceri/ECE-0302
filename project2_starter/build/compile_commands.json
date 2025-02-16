@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project2_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-FindPalindrome.dir\\FindPalindrome.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project2_starter\\FindPalindrome.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project2_starter/FindPalindrome.cpp",
+  "output": "CMakeFiles/test-FindPalindrome.dir/FindPalindrome.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project2_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-FindPalindrome.dir\\test_FindPalindrome.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project2_starter\\test_FindPalindrome.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project2_starter/test_FindPalindrome.cpp",
+  "output": "CMakeFiles/test-FindPalindrome.dir/test_FindPalindrome.cpp.obj"
+}
+]

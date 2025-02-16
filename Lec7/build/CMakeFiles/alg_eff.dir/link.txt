@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\alg_eff.dir/objects.a
+C:\msys64\ucrt64\bin\ar.exe qc CMakeFiles\alg_eff.dir/objects.a @CMakeFiles\alg_eff.dir\objects1.rsp
+C:\msys64\ucrt64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\alg_eff.dir/objects.a -Wl,--no-whole-archive -o alg_eff.exe -Wl,--out-implib,libalg_eff.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\alg_eff.dir\linkLibs.rsp
