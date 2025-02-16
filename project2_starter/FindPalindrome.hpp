@@ -7,8 +7,15 @@
 class FindPalindrome{
 
 private:
-	// private stuff that you define and implement goes here...
+    /**
+    Stores the unique words added to the FindPalindrome instance.
+    Words are preserved in its original state. Uniqueness is not case sensitive.
+    */
     std::vector<std::string> wordList;
+	/**
+    Stores all sentence palindromes.
+	Each palindrome sentence is a vector of strings when in order form a palindrome when concatinated
+     */
     std::vector< std::vector<std::string> > palindromes;
 	// private stuff that you are given or is specified in the project
 	// description...
