@@ -51,6 +51,8 @@ TEST_CASE("Test cutTest1", "[cutTest1]") {
     FindPalindrome fp;
     std::vector<std::string> vec1 = {"a", "b"};
     REQUIRE(fp.cutTest1(vec1) == false);
+    std::vector<std::string> v3 = {"ab","a"};
+    REQUIRE(fp.cutTest1(v3));
     std::vector<std::string> vec2 = {"a", "aa"};
     REQUIRE(fp.cutTest1(vec2) == true);
 }//tests the cuttest1 with odd frequency and concatenated string
@@ -78,3 +80,21 @@ TEST_CASE("Test add(vector<string>) method", "[add_vector]") {
     auto vec = fp.toVector();
     REQUIRE_FALSE(vec.empty());
 }//adds all words since they are unique and at least one palindrome is found
+
+TEST_CASE("Test countRecursion", "[countRecursion]") {
+    FindPalindrome fp;
+    REQUIRE(fp.add("aba"));
+    REQUIRE(fp.countRecursion() == 2);
+}
+/**
+//Checkoff assignment adds a variable that increments on entry
+decremented on return, maxRecursionLevel is updated whenever
+currentRecursionlevel exceeds its current value
+should return two because it is called twice
+resets are added to ensure it is properly set back to 0 when needed
+added to private
+int currentRecursionLevel;
+int maxRecursionLevel;
+added to public
+int countRecursion() const;
+*/

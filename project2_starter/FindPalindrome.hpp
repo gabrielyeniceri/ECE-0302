@@ -16,6 +16,8 @@ private:
     Stores all sentence palindromes.
 	Each palindrome sentence is a vector of strings when in order form a palindrome when concatinated
      */
+	 int currentRecursionLevel;
+	 int maxRecursionLevel;
     std::vector< std::vector<std::string> > palindromes;
 	// private stuff that you are given or is specified in the project
 	// description...
@@ -105,7 +107,7 @@ public:
 	    all current strings added to the FindPalindrome instance.
 	@return  A vector of vectors containing all palindromes. */
 	std::vector< std::vector<std::string> > toVector() const;
-
+	int countRecursion() const;
 };
 
 #endif

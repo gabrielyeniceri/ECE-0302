@@ -24,8 +24,13 @@ static void convertToLowerCase(string & value)
 
 // private recursive function. Must use this signature!
 void FindPalindrome::recursiveFindPalindromes(vector<string> candidateStringVector, vector<string> currentStringVector)
-{
+{   
+    currentRecursionLevel++;
+    if (currentRecursionLevel > maxRecursionLevel) {
+        maxRecursionLevel = currentRecursionLevel;
+    }
     if (!cutTest2(candidateStringVector, currentStringVector)) {
+        currentRecursionLevel--;//keeps track of recursion
         return;
     }
     //no more words to add
@@ -37,6 +42,7 @@ void FindPalindrome::recursiveFindPalindromes(vector<string> candidateStringVect
         if (isPalindrome(concatenated)) {
             palindromes.push_back(candidateStringVector);
         }
+        currentRecursionLevel--;
         return;
     }
     //if its not empty it continues to try each remaining word
@@ -47,6 +53,7 @@ void FindPalindrome::recursiveFindPalindromes(vector<string> candidateStringVect
         remaining.erase(remaining.begin() + i);
         recursiveFindPalindromes(newCandidate, remaining);
     }
+    currentRecursionLevel--;
 }
 
 // private function to determine if a string is a palindrome (given, you
@@ -73,6 +80,8 @@ FindPalindrome::FindPalindrome()
 {
     wordList.clear();
     palindromes.clear();
+    currentRecursionLevel = 0;
+    maxRecursionLevel = 0;
 }
 
 //clears memory
@@ -93,8 +102,12 @@ void FindPalindrome::clear()
 {
     wordList.clear();
     palindromes.clear();
+    currentRecursionLevel = 0;
+    maxRecursionLevel = 0;
 }
-
+//all words in the vector are concatenated into a single string then converted to lowercase
+//then counts the frequency of the letters from a to z
+//if character has odd freq it returns false
 //returns true when total chars in the vector have at most one odd freq
 bool FindPalindrome::cutTest1(const vector<string> & stringVector)
 {
@@ -120,7 +133,12 @@ bool FindPalindrome::cutTest1(const vector<string> & stringVector)
     }
     return true;
 }
+//cuttest 2 prunes the search space, splits into two, remaining words and palindrome candidates
+//it is put into lowercase then computes the frequency of each letter in both concatenated strings
 
+//identifies which group has fewers characters or if its equal, all letters in smaller string must be found in the larger string at the same
+//freq to be possible palindrome, if the freq in the smaller string exceeds the larger it returns false, avoids etra computing
+//does not determine the final form of palindrome
 //for the vector with fewers characters after concatenation each letterf must appear in the other vector with at least as high a count
 bool FindPalindrome::cutTest2(const vector<string> & stringVector1,
                               const vector<string> & stringVector2)
@@ -189,6 +207,8 @@ bool FindPalindrome::add(const string & value)
     wordList.push_back(value);
     //find palindromes again
     palindromes.clear();
+    currentRecursionLevel = 0;//resets
+    maxRecursionLevel = 0;
     if (cutTest1(wordList)) {
         vector<string> candidate;
         recursiveFindPalindromes(candidate, wordList);
@@ -233,6 +253,8 @@ bool FindPalindrome::add(const vector<string> & stringVector)
     
     //find palindromes again
     palindromes.clear();
+    currentRecursionLevel = 0;
+    maxRecursionLevel = 0;
     if (cutTest1(wordList)) {
         vector<string> candidate;
         recursiveFindPalindromes(candidate, wordList);
@@ -243,4 +265,8 @@ bool FindPalindrome::add(const vector<string> & stringVector)
 vector< vector<string> > FindPalindrome::toVector() const
 {
     return palindromes;
+}
+
+int FindPalindrome::countRecursion() const {
+    return maxRecursionLevel;
 }
