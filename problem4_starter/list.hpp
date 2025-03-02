@@ -2,6 +2,7 @@
 #define _LIST_HPP_
 
 #include "abstract_list.hpp"
+#include "Node.hpp"
 
 template <typename T>
 class List: public AbstractList<T>
@@ -35,9 +36,8 @@ public:
   void moveEntry(std::size_t from, std::size_t to);
 
 private:
-
-  //TODO
-  
+Node<T>* head;
+std::size_t size;
 };
 
 #include "list.tpp"

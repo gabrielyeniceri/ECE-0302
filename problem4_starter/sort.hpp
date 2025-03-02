@@ -12,9 +12,31 @@
  @param last  The end element to consider in list. */
 
 template <typename T>
+ void swapByMove(List<T>& list, int i, int j) {
+     if (i == j) return;
+     if (i > j) {
+         int temp = i;
+         i = j;
+         j = temp;
+     }
+     list.moveEntry(j, i);
+     list.moveEntry(i + 1, j);
+ }
+
+template <typename T>
 void quick_sort(List<T> &list, int first, int last)
 {
-
+//ensures error checking
+  if (first < 1 || last > static_cast<int>(list.getLength()))
+     throw std::out_of_range("quick_sort: index out of range");
+if (first < last)
+{
+//partitions the list
+int pivotIndex = partition(list, first, last);
+//sorts the left and right sublist recursively
+quick_sort(list, first, pivotIndex - 1);
+quick_sort(list, pivotIndex + 1, last);
+}
     // must call partition below
 }
 
@@ -34,10 +56,27 @@ void quick_sort(List<T> &list, int first, int last)
 template <typename T>
 int partition(List<T> &list, int first, int last)
 {
+if (first < 1 || last > static_cast<int>(list.getLength()) || first > last)
+throw std::out_of_range("partition: index out of range");
+T pivot = list.getEntry(last);
+int i = first - 1;
 
-    // TODO, note the 1-index based list
-
-    // You can choose the pivot yourself, but no matter what you choose
+//iterates through sublist
+for (int j = first; j <= last - 1; j++)
+{
+    if (list.getEntry(j) <= pivot)
+    {
+        i++;
+        //uses helper to swap i and j entries if they are different
+        if (i != j)
+            swapByMove(list, i, j);
+    }
+}
+//pivot is placed in correct location by swapping with element at i+1
+if (i + 1 != last)
+    swapByMove(list, i + 1, last);
+    
+return i + 1;
     // list[first..pivotIndex-1] <= pivot, list[pivotIndex] == pivot, list[pivotIndex + 1..last] >= pivot
 }
 #endif
