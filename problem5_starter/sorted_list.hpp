@@ -4,7 +4,8 @@
 
 #include "abstract_sorted_list.hpp"
 #include "list.hpp"
-
+#include <cstddef>
+#include <stdexcept>
 template <typename T>
 class SortedList: public AbstractSortedList<T>, private List<T>
 {
@@ -35,7 +36,7 @@ public:
 
   T getEntry(std::size_t position) const;
 
-  long int getPosition(const T& item);
+  std::size_t getPosition(const T& item);
 
 private:
 

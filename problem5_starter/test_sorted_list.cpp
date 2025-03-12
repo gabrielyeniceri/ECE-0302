@@ -129,3 +129,33 @@ TEST_CASE("SortedList: Testing list exceptions", "[list]") {
 }
 
 /* Your tests here */
+TEST_CASE("SortedList: Testing exceptions", "[sorted list]") {
+  SortedList<int> lst;
+  
+  REQUIRE_THROWS_AS(lst.remove(5), std::invalid_argument);
+
+  REQUIRE_THROWS_AS(lst.getPosition(5), std::invalid_argument);
+  
+  lst.insert(1);
+  lst.insert(3);
+  lst.insert(2);
+
+  REQUIRE_NOTHROW(lst.remove(2));
+  REQUIRE(lst.getPosition(1) == 1);
+  REQUIRE(lst.getPosition(3) == 2);
+}
+
+TEST_CASE("SortedList: Testing string sorting", "[sorted list]") {
+  SortedList<std::string> lst;
+  
+  lst.insert("zoo");
+  lst.insert("abstract");
+  lst.insert("cathy");
+  lst.insert("button");
+  
+  REQUIRE(lst.getEntry(1) == "abstract");
+  REQUIRE(lst.getEntry(2) == "button");
+  REQUIRE(lst.getEntry(3) == "cathy");
+  REQUIRE(lst.getEntry(4) == "zoo");
+  REQUIRE(lst.getLength() == 4);
+}

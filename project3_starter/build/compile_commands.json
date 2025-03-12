@@ -1,0 +1,14 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project3_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-XMLParser.dir\\test_XMLParser.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project3_starter\\test_XMLParser.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project3_starter/test_XMLParser.cpp",
+  "output": "CMakeFiles/test-XMLParser.dir/test_XMLParser.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project3_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-XMLParser.dir\\XMLParser.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project3_starter\\XMLParser.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project3_starter/XMLParser.cpp",
+  "output": "CMakeFiles/test-XMLParser.dir/XMLParser.cpp.obj"
+}
+]
