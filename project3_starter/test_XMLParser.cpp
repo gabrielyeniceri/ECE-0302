@@ -279,7 +279,7 @@ TEST_CASE("XMLParser: Test XMLParser with XML file workflow", "[XMLParser]")
 
 	// look at the tokenized input string
 	std::vector<TokenStruct> tokenizedInput = myParser.returnTokenizedInput();
-	REQUIRE(tokenizedInput.size() == 88);
+	REQUIRE(tokenizedInput.size() == 91);
 
 	// try to parse the tokenized input string to see if it is valid XML
 	success = myParser.parseTokenizedInput();
@@ -295,3 +295,81 @@ TEST_CASE("XMLParser: Test XMLParser with XML file workflow", "[XMLParser]")
 }
 
 /* Write your own uint tests here*/
+//Test should not match test and should return false
+TEST_CASE("XMLParser: Test invalid XML with mismatched case", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<Test>content</test>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE_FALSE(myXMLParser.parseTokenizedInput());
+}
+
+//ensures the parser can handle more than one delcaration
+TEST_CASE("XMLParser: Test multiple declarations", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                             "<?xml-stylesheet type=\"text/xsl\" href=\"style.xsl\"?>"
+                             "<root><child>data</child></root>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE(myXMLParser.parseTokenizedInput());
+    REQUIRE(myXMLParser.containsElementName("root"));
+    REQUIRE(myXMLParser.containsElementName("child"));
+    REQUIRE(myXMLParser.frequencyElementName("child") == 1);
+}
+
+//irregular white spaces, for testing trimming
+TEST_CASE("XMLParser: Test nested elements with irregular whitespace", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<root>\n    <child>   Some    content with   spaces  </child>\n</root>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE(myXMLParser.parseTokenizedInput());
+    REQUIRE(myXMLParser.containsElementName("root"));
+    REQUIRE(myXMLParser.containsElementName("child"));
+}
+
+//invalid declaration, white space so it tests the parser since formatting is wrong
+TEST_CASE("XMLParser: Test invalid declaration with leading whitespace", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<? xml version=\"1.0\"?><root></root>";
+    REQUIRE_FALSE(myXMLParser.tokenizeInputString(testString));
+}
+
+//only white space, should just return false since no markup should be found
+TEST_CASE("XMLParser: Test input with only whitespace and no markup", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "     \n\t   ";
+    REQUIRE_FALSE(myXMLParser.tokenizeInputString(testString));
+}
+
+//tests that the empty tags are processed correctly
+TEST_CASE("XMLParser: Test multiple consecutive empty tags", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<root><empty1/><empty2/><empty3/></root>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE(myXMLParser.parseTokenizedInput());
+    REQUIRE(myXMLParser.containsElementName("empty1"));
+    REQUIRE(myXMLParser.containsElementName("empty2"));
+    REQUIRE(myXMLParser.containsElementName("empty3"));
+    REQUIRE(myXMLParser.frequencyElementName("empty1") == 1);
+    REQUIRE(myXMLParser.frequencyElementName("empty2") == 1);
+    REQUIRE(myXMLParser.frequencyElementName("empty3") == 1);
+}
+
+//tests a valid xml string, confirms tag names are extracted correctly and parsed xml is valid
+TEST_CASE("XMLParser: Test valid XML with attributes", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "<book title=\"The You You Are: A Spiritual Biography of You\" author=\"Ricken Lazlo Hale\">"
+                             "<summary>Are you ready to meet the person who truly makes you “You”: You?</summary></book>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE(myXMLParser.parseTokenizedInput());
+    REQUIRE(myXMLParser.containsElementName("book"));
+    REQUIRE(myXMLParser.containsElementName("summary"));
+    REQUIRE(myXMLParser.frequencyElementName("book") == 1);
+}
+
+//checks that parser is rejecting the xml because there is non whitespace outside the root element
+TEST_CASE("XMLParser: Test XML with text outside root element", "[XMLParser]") {
+    XMLParser myXMLParser;
+    std::string testString = "Some text outside<root><child>data</child></root>";
+    REQUIRE(myXMLParser.tokenizeInputString(testString));
+    REQUIRE_FALSE(myXMLParser.parseTokenizedInput());
+}

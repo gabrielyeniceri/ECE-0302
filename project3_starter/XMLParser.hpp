@@ -31,6 +31,7 @@ class XMLParser
 private:
 	/** Bag to store the XML element names. Uses your Bag implementation. */
 	Bag<std::string> elementNameBag;
+	bool isParsedSuccessfully;
 	/** Stack to store XML tag names while parsing. Uses your Stack implementation. */
 	Stack<std::string> parseStack;
 	/** Vector to store the tokenized input string and the token types */

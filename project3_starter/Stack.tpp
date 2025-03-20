@@ -6,54 +6,61 @@
 #include "Node.hpp"
 
 template <typename ItemType>
-Stack<ItemType>::Stack()
+Stack<ItemType>::Stack() : headPtr(nullptr), currentSize(0)
 {
-	// TODO
 } // end default constructor
 
 template <typename ItemType>
 Stack<ItemType>::~Stack()
 {
-	// TODO
+	clear();
 } // end destructor
 
 template <typename ItemType>
 bool Stack<ItemType>::isEmpty() const
 {
-	// TODO
-	return true;
+	return currentSize == 0;
 } // end isEmpty
 
 template <typename ItemType>
 int Stack<ItemType>::size() const
 {
-	// TODO
-	return 0;
+	return currentSize;
 } // end size
 
 template <typename ItemType>
 bool Stack<ItemType>::push(const ItemType &newItem)
 {
-	// TODO
+    Node<ItemType>* newNode = new Node<ItemType>(newItem, headPtr);
+    headPtr = newNode;
+    currentSize++;
 	return true;
 } // end push
 
 template <typename ItemType>
 ItemType Stack<ItemType>::peek() const
 {
-	// TODO
-	return ItemType();
+if (isEmpty())
+    throw std::logic_error("Stack is empty");
+return headPtr->getItem();
 } // end peek
 
 template <typename ItemType>
 bool Stack<ItemType>::pop()
 {
-	// TODO
+if (isEmpty())
 	return false;
+Node<ItemType>* nodeToDelete = headPtr;
+headPtr = headPtr->getNext();
+delete nodeToDelete;
+currentSize--;
+return true;
 } // end pop
 
 template <typename ItemType>
 void Stack<ItemType>::clear()
 {
-	// TODO
+while (!isEmpty()) {
+        pop();
+}
 } // end clear
