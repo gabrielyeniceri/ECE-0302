@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem6_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-priority-queue.dir\\test_priority_queue.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\problem6_starter\\test_priority_queue.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem6_starter/test_priority_queue.cpp",
+  "output": "CMakeFiles/test-priority-queue.dir/test_priority_queue.cpp.obj"
+}
+]
