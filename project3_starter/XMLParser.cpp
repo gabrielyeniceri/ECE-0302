@@ -8,7 +8,7 @@
 #include <sstream>
 #include <stdexcept>
 
-
+//These 2 helper function ensure the error checking
 //removes the whitespace charactrs from string
 static std::string trim(const std::string &str) {
     size_t first = str.find_first_not_of(" \t\n\r");
@@ -44,7 +44,10 @@ XMLParser::XMLParser() : isParsedSuccessfully(false)
 
 // Then finish this function to pass the 4th~6th unit tests
 bool XMLParser::tokenizeInputString(const std::string &inputString)
-{
+{//it scans the input to break it into xml tokens
+//it goes idenitifies characters such as <> then identifies the type
+//like the declaration, start tag, empty tag, end tag and content
+//for each token it validates to ensure no illegal white space or invalid tag, if it is it returns false
 	// TODO, use '<' and '>' as anchors to scan string; Remember to clear each time before
 	// tokenizing a new string, and refer to the following code structure:
 
@@ -54,6 +57,7 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
 	// 	else if (c == '>') {?? continue;}
 	// 	else {?? continue;}
 	// }
+    //most of the code is just error checking, to ensure the input is correct
         //clears the previous tokens and parsing state
         tokenizedInputVector.clear();
         elementNameBag.clear();
@@ -62,7 +66,7 @@ bool XMLParser::tokenizeInputString(const std::string &inputString)
         size_t i = 0;
         bool foundMarkup = false;
         while (i < inputString.size())
-        {
+        {//processes the input string
             if (inputString[i] == '<')
             {
                 foundMarkup = true;
@@ -157,15 +161,19 @@ bool XMLParser::parseTokenizedInput()
 	// 	 else if (?? == EMPTY_TAG) {?? continue;}
 	// 	 ...
 	// }
-if (tokenizedInputVector.empty())
+if (tokenizedInputVector.empty())//error checks no input
+return false;
+if (!cutTest())
 return false;
 
 //first it clears
 while (!parseStack.isEmpty())
 	parseStack.pop();
 elementNameBag.clear();
-
+//then it goes through each token, in the order they were input
 bool encounteredRoot = false;
+//this for loop does not break until it is empty or there's an error
+//it uses case to process each token based off their type
 for (auto &token : tokenizedInputVector) {
 	switch (token.tokenType) {
 		case DECLARATION:
@@ -212,10 +220,10 @@ for (auto &token : tokenizedInputVector) {
 			break;
 		}
 		default:
-			return false;
+			return false;//ensures no unknown token type
 	}
 }
-if (!parseStack.isEmpty())
+if (!parseStack.isEmpty())//when it is empty it returns false which means it processed it all
 	return false;
 isParsedSuccessfully = encounteredRoot;
 return isParsedSuccessfully;
@@ -250,4 +258,18 @@ int XMLParser::frequencyElementName(const std::string &element) const
     if (!isParsedSuccessfully)
         throw std::logic_error("XML has not been tokenized and parsed successfully.");
     return elementNameBag.getFrequencyOf(element);
+}
+bool XMLParser::cutTest() {
+    if (tokenizedInputVector.empty()) //fail if no tokens
+        return false;
+    const TokenStruct &firstToken = tokenizedInputVector.front();//gets first and last token
+    const TokenStruct &lastToken = tokenizedInputVector.back();
+    //checkes first and last token
+    //first token cannot be content or end_tag
+    //last token cannot be content or end_tag either
+    if (firstToken.tokenType == CONTENT || firstToken.tokenType == END_TAG)
+        return false;
+    if (lastToken.tokenType == CONTENT || lastToken.tokenType == START_TAG)
+        return false;
+    return true;
 }

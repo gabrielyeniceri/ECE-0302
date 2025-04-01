@@ -373,3 +373,37 @@ TEST_CASE("XMLParser: Test XML with text outside root element", "[XMLParser]") {
     REQUIRE(myXMLParser.tokenizeInputString(testString));
     REQUIRE_FALSE(myXMLParser.parseTokenizedInput());
 }
+
+TEST_CASE("XMLParser: Checkoff test case", "[XMLParser]") {
+    std::string allowedPunc = "!\"#$%&'()*+,/;=?@[\\]^`{|}~";//given input
+    //valid case
+    std::string validXML = "<root attr=\"" + allowedPunc + "\">" + allowedPunc + "</root>";
+    XMLParser validParser;
+    REQUIRE(validParser.tokenizeInputString(validXML));
+    REQUIRE(validParser.parseTokenizedInput());
+    REQUIRE(validParser.containsElementName("root"));
+
+    //invalid case 1
+    std::string invalidContentXML = "<root attr=\"" + allowedPunc + "\">" + allowedPunc + "<</root>";
+    XMLParser invalidContentParser;
+    REQUIRE_FALSE(invalidContentParser.tokenizeInputString(invalidContentXML));
+	//invalid case 2
+    std::string invalidAttrXML = "<<root attr=\"" + allowedPunc + ">\">>" + allowedPunc + "</root>";
+    XMLParser invalidAttrParser;
+    REQUIRE_FALSE(invalidAttrParser.tokenizeInputString(invalidAttrXML));
+}
+
+//Test cases for the new function cut test
+TEST_CASE("XMLParser: first token is content, so it fails", "[XMLParser][cutTest]") {
+    XMLParser parser;
+    std::string xmlWithLeadingContent = "unexpectedContent<root>valid</root>";
+    REQUIRE(parser.tokenizeInputString(xmlWithLeadingContent));
+    REQUIRE_FALSE(parser.parseTokenizedInput());
+}
+
+TEST_CASE("XMLParser: valid XML cuttest pass", "[XMLParser][cutTest]") {
+    XMLParser parser;
+    std::string validXML = "<root><child>content</child></root>";
+    REQUIRE(parser.tokenizeInputString(validXML));
+    REQUIRE(parser.parseTokenizedInput());
+}

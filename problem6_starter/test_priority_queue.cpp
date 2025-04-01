@@ -89,3 +89,49 @@ TEST_CASE("Priority: Testing Priority Queue Add/isEmpty/peek/remove", "[priority
   pq.remove();
   REQUIRE(pq.peek() == 2);
 }
+
+TEST_CASE("SortedList: Duplicate Values", "[sorted list]") {
+  SortedList<int, List<int>> sort;
+  sort.insert(4);
+  sort.insert(4);
+  sort.insert(2);
+  sort.insert(4);
+  REQUIRE(sort.getLength() == 4);
+  REQUIRE(sort.getEntry(1) == 2);
+  REQUIRE(sort.getEntry(2) == 4);
+  REQUIRE(sort.getEntry(3) == 4);
+  REQUIRE(sort.getEntry(4) == 4);//2,4,4,4
+  REQUIRE(sort.getPosition(4) == 2);
+  sort.remove(4);// now it is 2,4,4
+  REQUIRE(sort.getLength() == 3);
+  REQUIRE(sort.getEntry(1) == 2);
+  REQUIRE(sort.getEntry(2) == 4);
+  REQUIRE(sort.getEntry(3) == 4);
+}
+TEST_CASE("SortedList: Exception Handling", "[sorted list]") {
+  SortedList<int, List<int>> sort;
+  REQUIRE_THROWS_AS(sort.getEntry(1), std::out_of_range);
+  sort.insert(5);
+  REQUIRE_THROWS_AS(sort.getEntry(2), std::out_of_range);
+  REQUIRE_THROWS_AS(sort.getPosition(3), std::invalid_argument);
+  REQUIRE_THROWS_AS(sort.remove(10), std::invalid_argument);
+  REQUIRE_THROWS_AS(sort.removeAt(2), std::out_of_range);
+}
+TEST_CASE("PriorityQueue: Exception on Peek Empty", "[priority queue]") {
+  PriorityQueueType pq;
+  REQUIRE(pq.isEmpty());
+  REQUIRE_THROWS_AS(pq.peek(), std::out_of_range);
+}
+TEST_CASE("PriorityQueue: Duplicate Values", "[priority queue]") {
+  PriorityQueueType pq;
+  pq.add(4);
+  pq.add(4);
+  pq.add(2);
+  pq.add(4);
+  REQUIRE(pq.peek() == 4);
+  pq.remove();
+  REQUIRE(pq.peek() == 4);
+  pq.remove();
+  pq.remove();
+  REQUIRE(pq.peek() == 2);
+}

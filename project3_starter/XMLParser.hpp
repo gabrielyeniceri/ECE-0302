@@ -36,7 +36,7 @@ private:
 	Stack<std::string> parseStack;
 	/** Vector to store the tokenized input string and the token types */
 	std::vector<TokenStruct> tokenizedInputVector;
-
+	bool cutTest();
 	// TODO: add private members or private functions if necessary
 
 public:

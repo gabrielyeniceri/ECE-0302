@@ -1,0 +1,32 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-pathfinder.dir\\PathFinder.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project4_starter\\PathFinder.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/PathFinder.cpp",
+  "output": "CMakeFiles/test-pathfinder.dir/PathFinder.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-pathfinder.dir\\test_pathfinder.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project4_starter\\test_pathfinder.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/test_pathfinder.cpp",
+  "output": "CMakeFiles/test-pathfinder.dir/test_pathfinder.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-pathfinder.dir\\lib\\image.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project4_starter\\lib\\image.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/lib/image.cpp",
+  "output": "CMakeFiles/test-pathfinder.dir/lib/image.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-pathfinder.dir\\lib\\lodepng.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project4_starter\\lib\\lodepng.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/lib/lodepng.cpp",
+  "output": "CMakeFiles/test-pathfinder.dir/lib/lodepng.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-pathfinder.dir\\lib\\gif.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project4_starter\\lib\\gif.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project4_starter/lib/gif.cpp",
+  "output": "CMakeFiles/test-pathfinder.dir/lib/gif.cpp.obj"
+}
+]
