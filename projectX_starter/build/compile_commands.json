@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/projectX_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-database.dir\\test_database.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\projectX_starter\\test_database.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/projectX_starter/test_database.cpp",
+  "output": "CMakeFiles/test-database.dir/test_database.cpp.obj"
+}
+]

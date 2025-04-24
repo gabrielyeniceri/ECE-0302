@@ -2,6 +2,15 @@
 #define _LIST_HPP_
 
 #include "abstract_list.hpp"
+#include <cstddef>
+#include <utility>
+
+template <typename T>
+struct Node {
+   T data;
+   Node* next;
+   Node(const T& d, Node* n = nullptr): data(d), next(n) {}
+};
 
 template <typename T>
 class List : public AbstractList<T>
@@ -32,7 +41,8 @@ public:
   void setEntry(std::size_t position, const T &newValue);
 
 private:
-  // TODO
+Node<T>* head;
+std::size_t length;
 };
 
 #include "list.tpp"

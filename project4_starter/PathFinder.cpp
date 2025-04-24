@@ -2,6 +2,13 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
+#include <string>
+//this is a helper function that checks if coord is on the border of the maze
+static inline bool isOnBorder(const Coord &p, const Image<Pixel> &img) {
+    return (p.row == 0 || p.row == img.height()-1 ||
+            p.col == 0 || p.col == img.width()-1);
+}
 
 PathFinder::PathFinder(const Image<Pixel> &img)
 {
@@ -10,23 +17,108 @@ PathFinder::PathFinder(const Image<Pixel> &img)
 
 void PathFinder::load(const Image<Pixel> &img)
 {
-    // TODO
+    checkImage(img);
+    image = img;
+    deadEndCount = 0;//checkoff reset deadend count
 }
 
 PathFinder::~PathFinder()
 {
     clear();
 } // Destructor delegates to clear() function
-
+//checkimage first ensures the input image is a valid maze
+//it must contain 1 red pixel exactly, and only white black or red pixels otherwise throws invalid args
+//goes over every pixel to ensure only one red pixel exists otherwise invalid arg
 void PathFinder::checkImage(const Image<Pixel> &img)
 {
-    // TODO
+    int redCount = 0;
+    for (int r = 0; r < img.height(); ++r) {
+        for (int c = 0; c < img.width(); ++c) {
+            Pixel p = img(r, c);
+            if (!(p == WHITE || p == BLACK || p == RED)) {
+                throw std::invalid_argument("Image has invalid pixel color.");
+            }
+            if (p == RED) {
+                redCount++;
+            }
+        }
+    }
+    if (redCount != 1) {
+        throw std::invalid_argument("Image must have exactly one red pixel.");
+    }
 }
 
-void PathFinder::findPath(std::string strategy)
-{
-    // TODO, strategy is default at "NSWE"
-    // Must use Queue ADT to implement BFS algorithm
+//gets the start coord
+//it uses visited[][] to ensure you only visit a cell once
+//parent[][] is for constructing the path
+void PathFinder::findPath(std::string strategy) {
+    deadEndCount = 0;
+    Coord start = getStart();
+    
+    if (isOnBorder(start, image)) {
+        image(start.row, start.col) = GREEN;
+        end = start;
+        deadEndCount = 0;
+        return;
+    }
+    std::vector<std::vector<bool>> visited(image.height(), std::vector<bool>(image.width(), false));
+    std::vector<std::vector<Coord>> parent(image.height(), std::vector<Coord>(image.width(), Coord(-1, -1)));
+    visited[start.row][start.col] = true;
+    
+    Queue<Coord, List<Coord>> frontier;
+    frontier.enqueue(start);
+    
+    bool exitFound = false;
+    Coord exitCoord;
+    //this loop ends when an exit is found or forntier is empty
+    while (!frontier.isEmpty() && !exitFound) {
+        Coord cur = frontier.peekFront();
+        frontier.dequeue();
+        bool moved = false;
+        for (char dir : strategy) {
+            Coord next = cur;
+            switch (dir) {
+                case 'N': next.row = cur.row - 1; break;
+                case 'S': next.row = cur.row + 1; break;
+                case 'W': next.col = cur.col - 1; break;
+                case 'E': next.col = cur.col + 1; break;
+                default: continue;
+            }
+            if (next.row < 0 || next.row >= image.height() || 
+                next.col < 0 || next.col >= image.width())
+                continue;
+            if (visited[next.row][next.col] || image(next.row, next.col) != WHITE)
+                continue;
+            
+            //marks the coords then checks for exit
+            moved = true;
+            visited[next.row][next.col] = true;
+            parent[next.row][next.col] = cur;
+            frontier.enqueue(next);
+            if (isOnBorder(next, image)) {
+                exitCoord = next;
+                exitFound = true;
+                break;
+            }
+        }
+        if (!moved){
+            ++deadEndCount;
+    }
+    }
+    
+    if (!exitFound) {
+        throw std::runtime_error("No path found.");
+    }
+    
+    image(exitCoord.row, exitCoord.col) = GREEN;
+    end = exitCoord;
+    Coord cur = exitCoord;
+    while (cur != start) {
+        if (cur != start && cur != exitCoord) {
+            image(cur.row, cur.col) = YELLOW;
+        }
+        cur = parent[cur.row][cur.col];
+    }
 }
 
 void PathFinder::findPathWithVisualization(const std::string &outfile, int frame_duration, int frame_gap, std::string strategy)
@@ -45,16 +137,80 @@ void PathFinder::findPathWithVisualization(const std::string &outfile, int frame
     {
         throw std::runtime_error("Failed to create GIF file.");
     }
-
-    // TODO, strategy is default at "NSWE"
-    // Must use Queue ADT to implement BFS algorithm with visualization
-
-    // Must use `` addFrameToGif(gif, frame_duration) `` at certain time to write the frame to the gif
-    // Before each of your function exit (e.g., return or throw), you have to conclude the gif object
-    // by `` GifEnd(&gif); ``
-
-    // It's also expected to have
-    // ``writeToFile(image, outfile + "_final_visual.png")`` at the end of pathfinding
+    Coord start = getStart();
+    if (isOnBorder(start, image))
+    {
+        image(start.row, start.col) = GREEN;
+        addFrameToGif(gif, frame_duration);
+        writeSolutionToFile(outfile + "_final_visual.png");
+        GifEnd(&gif);
+        end = start;
+        return;
+    }
+    int height = image.height();
+    int width = image.width();
+    std::vector<std::vector<bool>> visited(height, std::vector<bool>(width, false));
+    std::vector<std::vector<Coord>> parent(height, std::vector<Coord>(width, Coord(-1, -1)));
+    visited[start.row][start.col] = true;
+    Queue<Coord, List<Coord>> frontier;
+    frontier.enqueue(start);
+    bool exitFound = false;
+    Coord exitCoord;
+    while (!frontier.isEmpty() && !exitFound)
+    {
+        Coord cur = frontier.peekFront();
+        frontier.dequeue();
+        for (char dir : strategy)
+        {
+            Coord next = cur;
+            switch (dir)
+            {
+            case 'N': next.row = cur.row - 1; break;
+            case 'S': next.row = cur.row + 1; break;
+            case 'W': next.col = cur.col - 1; break;
+            case 'E': next.col = cur.col + 1; break;
+            default: continue;
+            }
+            if (next.row < 0 || next.row >= height || next.col < 0 || next.col >= width)
+                continue;
+            if (visited[next.row][next.col] || image(next.row, next.col) != WHITE)
+                continue;
+            //colors new found cells blue, then adds a frame
+            visited[next.row][next.col] = true;
+            parent[next.row][next.col] = cur;
+            image(next.row, next.col) = BLUE;
+            frontier.enqueue(next);
+            frame_counter++;
+            if (frame_counter % frame_gap == 0)
+            {
+                addFrameToGif(gif, frame_duration);
+            }
+            if (isOnBorder(next, image))
+            {
+                exitCoord = next;
+                exitFound = true;
+                break;
+            }
+        }
+    }
+    if (!exitFound)
+    {
+        GifEnd(&gif);
+        throw std::runtime_error("No path found.");
+    }
+    image(exitCoord.row, exitCoord.col) = GREEN;
+    end = exitCoord;
+    Coord cur = exitCoord;
+    while (cur != start)
+    {
+        if (cur != start && cur != exitCoord)
+        {
+            image(cur.row, cur.col) = YELLOW;
+        }
+        cur = parent[cur.row][cur.col];
+    }
+    addFrameToGif(gif, frame_duration);
+    writeSolutionToFile(outfile + "_final_visual.png");
     GifEnd(&gif);
 }
 
@@ -130,19 +286,26 @@ void PathFinder::writeSolutionToFile(const std::string &filename)
 
 Coord PathFinder::getStart()
 {
-    // TODO
-    return Coord(); // placeholder
+    for (int r = 0; r < image.height(); ++r) {
+        for (int c = 0; c < image.width(); ++c) {
+            if (image(r, c) == RED) {
+                return Coord(r, c);
+            }
+        }
+    }
+    return Coord();
 }
 
 Coord PathFinder::getEnd()
 {
-    // TODO
-    return Coord(); // placeholder
+return end;
 }
 
 void PathFinder::clear()
 {
-    // TODO
+    image = Image<Pixel>();
+    end = Coord();
+    deadEndCount = 0; //checkoff q set deadend to 0
 }
 
 // Nonmember functions
@@ -188,3 +351,7 @@ bool compareImages(std::string img1_str, std::string img2_str)
     }
     return true;
 } // Finished
+
+int PathFinder::getDeadEndCount() const {
+    return deadEndCount;
+}

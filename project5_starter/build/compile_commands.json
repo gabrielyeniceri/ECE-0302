@@ -1,0 +1,38 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\test_solver.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\test_solver.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/test_solver.cpp",
+  "output": "CMakeFiles/test-solver.dir/test_solver.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\puzzle.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\puzzle.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/puzzle.cpp",
+  "output": "CMakeFiles/test-solver.dir/puzzle.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\puzzle_solver.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\puzzle_solver.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/puzzle_solver.cpp",
+  "output": "CMakeFiles/test-solver.dir/puzzle_solver.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\lib\\image.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\lib\\image.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/lib/image.cpp",
+  "output": "CMakeFiles/test-solver.dir/lib/image.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\lib\\lodepng.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\lib\\lodepng.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/lib/lodepng.cpp",
+  "output": "CMakeFiles/test-solver.dir/lib/lodepng.cpp.obj"
+},
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-solver.dir\\lib\\gif.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\project5_starter\\lib\\gif.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/project5_starter/lib/gif.cpp",
+  "output": "CMakeFiles/test-solver.dir/lib/gif.cpp.obj"
+}
+]

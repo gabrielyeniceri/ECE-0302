@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem9_starter/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test-graph.dir\\test_graph.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\problem9_starter\\test_graph.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/problem9_starter/test_graph.cpp",
+  "output": "CMakeFiles/test-graph.dir/test_graph.cpp.obj"
+}
+]

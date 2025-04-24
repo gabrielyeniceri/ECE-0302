@@ -28,6 +28,7 @@ struct Coord
 class PathFinder
 {
 public:
+int getDeadEndCount() const;
   // Constructor and destructor
 
   /** @brief Construct the class from a Image<Pixel> object, delegate to load() function
@@ -102,6 +103,8 @@ public:
 
 private:
   Image<Pixel> image;
+  Coord end;
+  int deadEndCount;
   // TODO: Add more private member variables and methods as needed
 };
 

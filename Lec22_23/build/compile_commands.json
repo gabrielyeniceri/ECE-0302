@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec22_23/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++11 -o CMakeFiles\\test_more_trees.dir\\test_more_trees.cpp.obj -c C:\\Users\\gkyen\\OneDrive\\Documents\\ece0302\\ECE-0302\\Lec22_23\\test_more_trees.cpp",
+  "file": "C:/Users/gkyen/OneDrive/Documents/ece0302/ECE-0302/Lec22_23/test_more_trees.cpp",
+  "output": "CMakeFiles/test_more_trees.dir/test_more_trees.cpp.obj"
+}
+]

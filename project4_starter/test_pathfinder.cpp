@@ -168,3 +168,122 @@ TEST_CASE("PathFinder: Demo Pathfinding Gif Creation", "[pathfinder]")
 }
 
 /* Write your own uint tests here*/
+TEST_CASE("Queue: Test Queue with strings", "[queue]") {
+    Queue<std::string, List<std::string>> q;
+    REQUIRE(q.isEmpty());
+    q.enqueue("first");
+    q.enqueue("second");
+    q.enqueue("third");
+    REQUIRE(q.peekFront() == "first");
+    q.dequeue();
+    REQUIRE(q.peekFront() == "second");
+    q.dequeue();
+    REQUIRE(q.peekFront() == "third");
+    q.dequeue();
+    REQUIRE(q.isEmpty());
+    REQUIRE_THROWS_AS(q.peekFront(), std::out_of_range);
+    REQUIRE_THROWS_AS(q.dequeue(), std::out_of_range);
+}
+TEST_CASE("PathFinder: Test getEnd returns correct coordinate", "[pathfinder]") {
+    //creates 3x3, red pixel at 1,1 with white border
+    Image<Pixel> img(3, 3);
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            img(r, c) = WHITE;
+        }
+    }
+    img(1, 1) = RED;
+    PathFinder pf(img);
+    pf.findPath("NSWE");
+    Coord expectedExit(0, 1);
+    REQUIRE(pf.getEnd() == expectedExit);
+    //REQUIRE(img(0, 1) == GREEN);
+}
+TEST_CASE("PathFinder: Test when start is on border", "[pathfinder]") {
+    Image<Pixel> img(3, 3);
+    for (int r = 0; r < 3; ++r) {
+        for (int c = 0; c < 3; ++c) {
+            img(r, c) = WHITE;
+        }
+    }
+    img(0, 1) = RED;
+    PathFinder pf(img);
+    pf.findPath("NSWE");
+    REQUIRE(pf.getEnd() == Coord(0, 1));
+    //REQUIRE(img(0, 1) == GREEN);
+}
+
+//Write a test case to initialize an image with alternating white/black pixels (8*8, think how to use % operator to assign color),
+// and then set one border black pixel to red, and verify that the result image would just set this red pixel to green (no yellow one is created). 
+//Try to set another border black to red without creating a new object (here to check clear() and load()) 
+// and it shall still show the same direct red-to-green pattern
+TEST_CASE("PathFinder: Alternating 8x8 border start with reuse of solver", "[pathfinder]")
+{
+    Image<Pixel> img(8, 8);
+    for (int r = 0; r < 8; ++r)
+    {
+        for (int c = 0; c < 8; ++c)
+        {
+            img(r, c) = ((r + c) % 2 == 0) ? WHITE : BLACK;
+        }
+    }
+    Coord start0(0, 1);//should be black here
+    REQUIRE(img(start0.row, start0.col) == BLACK);
+    img(start0.row, start0.col) = RED;
+
+    PathFinder pf(img);
+    pf.findPath("NSWE");
+    pf.writeSolutionToFile("../tests/myoutput_alt0.png");
+    Image<Pixel> out0 = readFromFile("../tests/myoutput_alt0.png");
+//should be only a single green
+    int greenCnt0 = 0;
+    int yellowCnt0 = 0;
+    for (int r = 0; r < 8; ++r)
+    {
+        for (int c = 0; c < 8; ++c)
+        {
+            if (out0(r, c) == GREEN) ++greenCnt0;
+            if (out0(r, c) == YELLOW) ++yellowCnt0;
+        }
+    }
+    REQUIRE(greenCnt0 == 1);
+    REQUIRE(yellowCnt0 == 0);
+    REQUIRE(pf.getEnd() == start0);
+    pf.clear();
+    for (int r = 0; r < 8; ++r)//resets image
+    {
+        for (int c = 0; c < 8; ++c)
+        {
+            img(r, c) = ((r + c) % 2 == 0) ? WHITE : BLACK;
+        }
+    }
+    Coord start1(7, 6);
+    REQUIRE(img(start1.row, start1.col) == BLACK);
+    img(start1.row, start1.col) = RED;//sets to red
+    pf.load(img);
+    pf.findPath("NSWE");
+    pf.writeSolutionToFile("../tests/myoutput_alt1.png");
+    Image<Pixel> out1 = readFromFile("../tests/myoutput_alt1.png");
+    int greenCnt1 = 0;
+    int yellowCnt1 = 0;
+    for (int r = 0; r < 8; ++r)
+    {
+        for (int c = 0; c < 8; ++c)
+        {
+            if (out1(r, c) == GREEN) ++greenCnt1;
+            if (out1(r, c) == YELLOW) ++yellowCnt1;
+        }
+    }
+    REQUIRE(greenCnt1 == 1);
+    REQUIRE(yellowCnt1 == 0);
+    REQUIRE(pf.getEnd() == start1);
+}
+
+TEST_CASE("PathFinder: Dead end count", "[pathfinder]") {
+    Image<Pixel> img = readFromFile("../tests/maze01.png");
+    PathFinder pf(img);
+    REQUIRE_THROWS_AS(pf.findPath("NESW"), std::runtime_error);
+    const int count = pf.getDeadEndCount();
+    REQUIRE(count >= 360);
+    REQUIRE(count <= 380);
+}
